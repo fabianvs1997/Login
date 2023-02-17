@@ -1,11 +1,19 @@
 package com.test.retirarefectivo.dao;
 
+import com.test.retirarefectivo.dto.CuentasDto;
+
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface CuentasIDao {
 
-    ResultSet conusltaNumTarjeta(Long num_tarjeta) throws SQLException, IOException;
+    CuentasDto conusltaNumTarjeta(Long num_tarjeta) throws SQLException, IOException;
+
+
+    Object crearCuenta(CuentasDto cuentasDto) throws SQLException, IOException;
+
+
+    void activarCuenta(Long num_cuenta);
+
 
 }
