@@ -43,7 +43,7 @@ import java.sql.SQLException;
  * - Este controlador depende del servicio `CuentasIService`, que se encarga de la lógica de negocios y la interacción con la base de datos.
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/login")
 public class CuentasController {
 
 
@@ -53,7 +53,7 @@ public class CuentasController {
     /**
      * Consulta el estado de una cuenta y devuelve una respuesta con información de la cuenta y un código de estado HTTP.
      */
-    @PostMapping("/login")
+    @PostMapping("/consultarTarjeta")
     public ResponseEntity<?> consultaTarjeta(@RequestBody CuentasRequest request, @RequestParam("cuenta") String num_tarjeta) throws SQLException, IOException {
         Long numT = Long.valueOf(num_tarjeta);
         CuentasResponse response = this.service.consultaTarjeta(numT, request);
@@ -80,4 +80,4 @@ public class CuentasController {
 }
 
 
-}
+
