@@ -63,7 +63,7 @@ public class CuentasController {
     /**
      * Crea una nueva cuenta y devuelve una respuesta con información de la cuenta creada y un código de estado HTTP.
      */
-    @PostMapping("/crearCuenta")
+    @PostMapping("/crearCuenta") //Crear cuenta
     public ResponseEntity<?> crearCuenta(@RequestBody RegistroCuentasRequest request) throws SQLException, IOException {
         CuentasResponse response = this.service.crearCuenta(request);
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getCode()));
