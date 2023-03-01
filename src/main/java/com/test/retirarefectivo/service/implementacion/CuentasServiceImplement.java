@@ -24,37 +24,37 @@ public class CuentasServiceImplement implements CuentasIService {
     @Autowired
     private Folios folios;
 
-    @Override
+    @Override                                                //hace refencia a una interfaz
     public CuentasResponse consultaTarjeta(Long num_tarjeta, CuentasRequest request) throws SQLException, IOException {
-        CuentasDto cuenta = dao.conusltaNumTarjeta(num_tarjeta);
-        CuentasResponse response = new CuentasResponse();
-
-        if (cuenta.getEstatus() != null) {
-            if (cuenta.getEstatus() == 0) {
+        CuentasDto cuenta = this.dao.conusltaNumTarjeta(num_tarjeta);      //cuentasdto es el objeto que hace refencia a nuestra tabla de la Bd
+        CuentasResponse response = new CuentasResponse();                 //dao conexion a Bd donde el metodo espera un parametro tipo long
+                                                                           //objeto - modelo de respuesta
+        if (cuenta.getEstatus() != null) {                // si no se obtienen datos de la consulta
+            if (cuenta.getEstatus() == 0) {               // si es estatus de mi cuenta es =0 manda esta excepcion
                 throw new GenericaException("Cuenta No Activa.",
                         "Comunícate con un ejecutivo para activar tu cuenta.",
-                        folios.folioResponse(), 200);
+                        this.folios.folioResponse(), 200);    //genera un folio con nuestro metodo que genera folios
             }
 
-            response.setMensaje("Aceptada.");
+            response.setMensaje("Aceptada.");  //si es diferente de 0 va a mandar esta respuesta, con el folio, codigo y detalles.
             response.setDetalles("Bienvenido " + cuenta.getNombre_cuenta() + ", ingresa tu NIP.");
-            response.setFolio(folios.folioResponse());
+            response.setFolio(this.folios.folioResponse());
             response.setCode(202);
         } else {
-            throw new GenericaException("Cuenta No Encontrada.",
-                    "Valida tus datos.", folios.folioResponse(), 204);
+            throw new GenericaException("Cuenta No Encontrada.",     //si hay alguna excepcion mostrara esta generica
+                    "Valida tus datos.", this.folios.folioResponse(), 204);
         }
 
-        return response;
+        return response;  //retornamos nuestra variable response
     }
 
     @Override
     public CuentasResponse crearCuenta(RegistroCuentasRequest request) throws SQLException, IOException {
 
-        CuentasDto resultSet = dao.conusltaNumTarjeta(request.getCuenta());
+        CuentasDto resultSet = this.dao.conusltaNumTarjeta(request.getCuenta());
         CuentasResponse response = new CuentasResponse();
         if (resultSet.getNombre_cuenta() == null) {
-            dao.crearCuenta(convertirRequest(request));
+            this.dao.crearCuenta(convertirRequest(request));
             response.setMensaje("Cuenta Creada.");
             response.setDetalles("Se requiere activacion de cuenta.");
             response.setFolio(this.folios.folioResponse());
@@ -95,7 +95,7 @@ public class CuentasServiceImplement implements CuentasIService {
     }
 
 
-    private CuentasDto convertirRequest(RegistroCuentasRequest request) {
+    private CuentasDto convertirRequest(RegistroCuentasRequest request) {       //convierte el resquest a cuenta dto
         CuentasDto cuentasDto = new CuentasDto();
         cuentasDto.setNombre_cuenta(request.getNombre());
         cuentasDto.setNumero_cuenta(request.getCuenta());
