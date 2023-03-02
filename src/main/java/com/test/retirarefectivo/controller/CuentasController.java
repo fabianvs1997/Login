@@ -42,8 +42,8 @@ import java.sql.SQLException;
  * - Las respuestas se devuelven como objetos `ResponseEntity`.
  * - Este controlador depende del servicio `CuentasIService`, que se encarga de la lógica de negocios y la interacción con la base de datos.
  */
-@RestController
-@RequestMapping("/api/v1")
+@RestController              // creación de API RESTful para manejar solicitudes HTTP y responder con objetos JSON o XML
+@RequestMapping("/login")              //para mapear una URL específica
 public class CuentasController {
 
 
@@ -53,11 +53,11 @@ public class CuentasController {
     /**
      * Consulta el estado de una cuenta y devuelve una respuesta con información de la cuenta y un código de estado HTTP.
      */
-    @PostMapping("/login")
-    public ResponseEntity<?> consultaTarjeta(@RequestBody CuentasRequest request, @RequestParam("cuenta") String num_tarjeta) throws SQLException, IOException {
-        Long numT = Long.valueOf(num_tarjeta);
-        CuentasResponse response = this.service.consultaTarjeta(numT, request);
-        return new ResponseEntity<>(response.map(), HttpStatusCode.valueOf(response.getCode()));
+    @PostMapping("/consultarTarjeta")              // asigana la ruta del login
+    public ResponseEntity<?> consultaTarjeta(@RequestBody CuentasRequest request, @RequestParam("cuenta") String num_tarjeta) throws SQLException, IOException {        //metodo que envia dos parametros, uno como body y otro como parametro
+        Long numT = Long.valueOf(num_tarjeta);    //convierte la cadena de caracteres tipo texto a long.
+        CuentasResponse response = this.service.consultaTarjeta(numT, request);  // respuesta del request
+        return new ResponseEntity<>(response.map(), HttpStatusCode.valueOf(response.getCode())); //mapeo de la respuesta y el codigo del estatus
     }
 
     /**
@@ -80,4 +80,4 @@ public class CuentasController {
 }
 
 
-}
+
