@@ -20,31 +20,31 @@ public class CuentasDaoImplement implements CuentasIDao {
     @Override
     public CuentasDto conusltaNumTarjeta(Long num_tarjeta) throws SQLException, IOException {
 
-        ResultSet resultSet = null;
-        CuentasDto cuentasDto = new CuentasDto();
-        try (
-                Statement statement = conn.getConnection().createStatement();
+        ResultSet resultSet = null;   // nos sirve para obtener nuestras columnas de la BD
+        CuentasDto cuentasDto = new CuentasDto();  // invocacion de nuestro objeto de cuentas
+        try (                     //detecta las excepcion generadas
+                Statement statement = this.conn.getConnection().createStatement();  //guarda la conexion de la Bd
         ) {
 
-            String query = "SELECT * FROM ROOT.CUENTAS WHERE NUMERO_CUENTA =" + num_tarjeta;
+            String query = "SELECT * FROM ROOT.CUENTAS WHERE NUMERO_CUENTA =" + num_tarjeta;   //query para seleccionar el #cuenta pasandole el request num_tarjeta
 
-            resultSet = statement.executeQuery(query);
+            resultSet = statement.executeQuery(query);  //ejecuta query sin modificar
 
-            ResultSetMetaData metadata = resultSet.getMetaData();
-            int columnCount = metadata.getColumnCount();
-            for (int i = 1; i <= columnCount; i++) {
+            ResultSetMetaData metadata = resultSet.getMetaData();  //obtiene los datos de nuestro query
+            int columnCount = metadata.getColumnCount();           //devuelve el numero de columnas y lo guarda en en la variable columnCount
+            for (int i = 1; i <= columnCount; i++) {              // cada vez que encuentra una cloumna mientras esta se <=1 imprimie el nombre de la columna
                 System.out.println(metadata.getColumnName(i));
             }
 
 
             while (resultSet.next()) {
-                cuentasDto.setNombre_cuenta(resultSet.getString("NOMBRE_CUENTA"));
-                cuentasDto.setNumero_cuenta(resultSet.getLong("NUMERO_CUENTA"));
-                cuentasDto.setEstatus(resultSet.getInt("ESTATUS"));
+                cuentasDto.setNombre_cuenta(resultSet.getString("NOMBRE_CUENTA")); // se asigna el valor del resultado al campo de nuestro objeto cuentasdto
+                cuentasDto.setNumero_cuenta(resultSet.getLong("NUMERO_CUENTA"));   // se asigna el valor del resultado al campo de nuestro objeto cuentasdto
+                cuentasDto.setEstatus(resultSet.getInt("ESTATUS"));                // se asigna el valor del resultado al campo de nuestro objeto cuentasdto
             }
 
 
-        } catch (SQLException | IOException e) {
+        } catch (SQLException | IOException e) {   // cacha las excepciones
             e.printStackTrace();
         }
 
