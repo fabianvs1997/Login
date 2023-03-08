@@ -1,9 +1,12 @@
 package com.test.retirarefectivo.exception;
 
 
-import lombok.Data;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class GenericaException extends RuntimeException {
 
     private String mensaje;

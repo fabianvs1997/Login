@@ -47,7 +47,7 @@ import java.sql.SQLException;
 public class CuentasController {
 
 
-    @Autowired
+    @Autowired //Crea una instancia de inyeccion de dependencias
     private CuentasIService service;
 
     /**
@@ -63,18 +63,22 @@ public class CuentasController {
     /**
      * Crea una nueva cuenta y devuelve una respuesta con información de la cuenta creada y un código de estado HTTP.
      */
-    @PostMapping("/crearCuenta")
-    public ResponseEntity<?> crearCuenta(@RequestBody RegistroCuentasRequest request) throws SQLException, IOException {
-        CuentasResponse response = this.service.crearCuenta(request);
-        return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getCode()));
+    @PostMapping("/crearCuenta")  // Asigana la ruta
+    public ResponseEntity<?> crearCuenta(@RequestBody RegistroCuentasRequest request) throws SQLException, IOException { //Metodo que envia dos parametros, uno como body y otro como parametro
+        CuentasResponse response = this.service.crearCuenta(request); // Respuesta
+        return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getCode())); //Esta línea de código crea un nuevo objeto de respuesta HTTP con el cuerpo de respuesta y el código de estado dados, que puede ser enviado de vuelta a un cliente que hace una solicitud HTTP.
     }
 
     /**
      * Activa una cuenta existente y devuelve una respuesta con información de la cuenta y un código de estado HTTP.
      */
     @GetMapping("/activarCuenta")
+    /*METODO GET MAPPING UNICAMENTE RECIBE INFORMACION, ESTA ES RECIBIDA POR URL*/
+    /*metodo publico ResponseEntity que permite regresar peticion http Metodo Activar cuenta que recibe parametro cuenta, Tiene las dos excepciones*/
     public ResponseEntity<?> activarCuenta(@RequestParam("cuenta") Long num_cuenta) throws SQLException, IOException {
-        CuentasResponse response = this.service.avtivaCuenta(num_cuenta);
+        /*Declaracion de objeto que tiene un servicio avtivaCuenta*/
+        CuentasResponse response = this.service.activaCuenta(num_cuenta);
+        /**/
         return new ResponseEntity<>(response.map(), HttpStatusCode.valueOf(response.getCode()));
     }
 }
