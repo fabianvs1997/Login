@@ -68,31 +68,41 @@ public class CuentasServiceImplement implements CuentasIService {
 
         return response;
     }
-
     @Override
-    public CuentasResponse avtivaCuenta(Long num_cuenta) throws SQLException, IOException {
+    /*metodo publico con parametros que espera*/
+    public CuentasResponse activaCuenta(Long num_cuenta) throws SQLException, IOException {
+        /*Creacion de objeto CuentasDto y accesa al metodo dao y espera el parametro num_cuenta*/
         CuentasDto cuenta = dao.conusltaNumTarjeta(num_cuenta);
+        /*Creacion de objeto para la respuesa*/
         CuentasResponse response = new CuentasResponse();
+        /*Validacion si el estado que regresa la consulta es diferente a null entra a la segunda validadcion*/
         if(cuenta.getEstatus() != null){
+            /*si el estado de la consulta es diferente a 1 entonces ingresa al metodo activar cuenta con el parametro num cuenta*/
             if(cuenta.getEstatus() !=1){
                 dao.activarCuenta(num_cuenta);
+                /*Envia los mensajes y con response envia mensaje yu detalles, asi como el folio de la transaccion que esta mencionando*/
                 response.setMensaje("Cuenta Se activo.");
                 response.setDetalles("Ya puede realizar sus transacciones.");
                 response.setFolio(this.folios.folioResponse());
+                /*Responde con el code 200*/
                 response.setCode(200);
             }else {
+                /*si el estado de la consulta es igual a 1 entonces nmotifica que la cuenta ya se encuentra activa y puede realizar transacciones de igual manera responde con un code 200*/
                 response.setMensaje("La Cuenta Ya Se Encuentra Activa.");
                 response.setDetalles("Ya puede realizar sus transacciones.");
                 response.setFolio(this.folios.folioResponse());
                 response.setCode(200);
             }
         }else{
+            /*Validacion si el estado que regresa la consulta es igual a null entonces la consuilta regreso datos no satisfactorios y envia codigo 204 de cuenta no localizada*/
+            /*Validacion si el estado que regresa la consulta es igual a null entonces la consuilta regreso datos no satisfactorios y envia codigo 204 de cuenta no localizada*/
             throw new GenericaException("Cuenta No Encontrada.",
                     "Valida tus datos.", folios.folioResponse(), 204);
         }
 
         return response;
     }
+
 
 
     private CuentasDto convertirRequest(RegistroCuentasRequest request) {       //convierte el resquest a cuenta dto

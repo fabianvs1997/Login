@@ -76,17 +76,25 @@ public class CuentasDaoImplement implements CuentasIDao {
     }
 
     @Override
+    /*Crea objeto de tipo publico con parametro num cuenta*/
     public void activarCuenta(Long num_cuenta) {
+        /*Habilita Try catch para capturar algun error*/
         try (
+                /*habilita la conexion para solicitar el query*/
                 PreparedStatement statement = conn.
                         getConnection().
-                        prepareStatement("UPDATE ROOT.CUENTAS SET ESTATUS = ? WHERE NUMERO_CUENTA = ?")
+                        /*Se lleva de la mano con los statement de abajo, cada signo de interrogacion uno es pára int y el otro para num_cuenta*/
+                                prepareStatement("UPDATE ROOT.CUENTAS SET ESTATUS = ? WHERE NUMERO_CUENTA = ?")
         ) {
+            /*Enviara valor 1 al parametro 1 (al signo de interrogacion 1 que hace referencia al status)*/
             statement.setInt(1, 1);
+            /*Enviara valor num_cuenta al parametro 2 (al signo de interrogacion 2 que hace referencia al num_cuenta)*/
             statement.setLong(2, num_cuenta);
+            /*Ejecuta actualizacion de los datos que acaba de cambiar*/
             statement.executeUpdate();
 
         } catch (SQLException | IOException e) {
+            /*Ingresara aqui en caso que logre capturar algun error y lo mostrara en consola*/
             e.printStackTrace();
         }
 

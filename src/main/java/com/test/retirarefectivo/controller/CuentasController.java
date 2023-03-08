@@ -73,8 +73,12 @@ public class CuentasController {
      * Activa una cuenta existente y devuelve una respuesta con información de la cuenta y un código de estado HTTP.
      */
     @GetMapping("/activarCuenta")
+    /*METODO GET MAPPING UNICAMENTE RECIBE INFORMACION, ESTA ES RECIBIDA POR URL*/
+    /*metodo publico ResponseEntity que permite regresar peticion http Metodo Activar cuenta que recibe parametro cuenta, Tiene las dos excepciones*/
     public ResponseEntity<?> activarCuenta(@RequestParam("cuenta") Long num_cuenta) throws SQLException, IOException {
-        CuentasResponse response = this.service.avtivaCuenta(num_cuenta);
+        /*Declaracion de objeto que tiene un servicio avtivaCuenta*/
+        CuentasResponse response = this.service.activaCuenta(num_cuenta);
+        /**/
         return new ResponseEntity<>(response.map(), HttpStatusCode.valueOf(response.getCode()));
     }
 }
