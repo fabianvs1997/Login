@@ -47,7 +47,7 @@ import java.sql.SQLException;
 public class CuentasController {
 
 
-    @Autowired
+    @Autowired //Crea una instancia de inyeccion de dependencias
     private CuentasIService service;
 
     /**
