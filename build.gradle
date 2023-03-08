@@ -21,6 +21,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation('com.oracle.database.jdbc:ojdbc11:21.3.0.0')
 	compileOnly 'org.projectlombok:lombok'
 
 	// https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8
