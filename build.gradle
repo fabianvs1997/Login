@@ -1,34 +1,34 @@
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.0.2'
-	id 'io.spring.dependency-management' version '1.1.0'
+plugins { // Declaración de los complementos que se van a utilizar en el proyecto
+	id 'java'// Complemento para aplicaciones Java
+	id 'org.springframework.boot' version '3.0.2' // Complemento para aplicaciones de Spring Boot, con la versión 3.0.2
+	id 'io.spring.dependency-management' version '1.1.0' // Complemento para la gestión de dependencias de Spring Boot
 }
 
-group = 'com.test.retirarefectivo'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+group = 'com.test.retirarefectivo'// Identificación del grupo de la aplicación
+version = '0.0.1-SNAPSHOT'// Versión de la aplicación
+sourceCompatibility = '17'// Versión de Java utilizada para compilar el código fuente
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+configurations {// Declaración de las configuraciones que se van a utilizar en el proyecto
+	compileOnly {// Configuración para las dependencias que sólo se utilizan en tiempo de compilación
+		extendsFrom annotationProcessor// Se extiende a partir de la configuración "annotationProcessor"
 	}
 }
 
-repositories {
-	mavenCentral()
+repositories {// Configuración de los repositorios que se van a utilizar para obtener las dependencias
+	mavenCentral()// Repositorio central de Maven
 }
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation('com.oracle.database.jdbc:ojdbc11:21.3.0.0')
-	compileOnly 'org.projectlombok:lombok'
+dependencies {// Declaración de las dependencias que se van a utilizar en el proyecto
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'// Dependencia para el acceso a datos con Spring Data JPA
+	implementation 'org.springframework.boot:spring-boot-starter-web'// Dependencia para la creación de aplicaciones web con Spring Boot
+	implementation('com.oracle.database.jdbc:ojdbc11:21.3.0.0')// Dependencia para el controlador JDBC de Oracle, versión 11
+	compileOnly 'org.projectlombok:lombok'// Dependencia para el uso de anotaciones de Lombok sólo en tiempo de compilación
 
 	// https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8
-	implementation 'com.oracle.ojdbc:ojdbc8:19.3.0.0'
+	implementation 'com.oracle.ojdbc:ojdbc8:19.3.0.0' // Dependencia para el controlador JDBC de Oracle, versión 8
 
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	annotationProcessor 'org.projectlombok:lombok'// Dependencia para el uso de anotaciones de Lombok en tiempo de compilación
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'// Dependencia para las pruebas unitarias con Spring Boot
 }
 
 tasks.named('test') {
