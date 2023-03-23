@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.test.retirarefectivo.retirarefectivo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.test.retirarefectivo.retirarefectivo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/login.main.iml" filepath="$PROJECT_DIR$/.idea/modules/login.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/retirarefectivo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/retirarefectivo.main.iml" />
     </modules>
   </component>
