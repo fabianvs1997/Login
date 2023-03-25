@@ -5,7 +5,6 @@ import com.banckiko.atm.login.dto.CuentasDto;
 import com.banckiko.atm.login.exception.GenericaException;
 import com.banckiko.atm.login.model.CuentasResponse;
 import com.banckiko.atm.login.model.registro.CuentasRequest;
-import com.banckiko.atm.login.model.registro.RegistroCuentasRequest;
 import com.banckiko.atm.login.service.CuentasIService;
 import com.banckiko.atm.login.utilidades.Folios;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,68 +46,4 @@ public class CuentasServiceImplement implements CuentasIService {
         return response;  //retornamos nuestra variable response
     }
 
-    @Override
-    public CuentasResponse crearCuenta(RegistroCuentasRequest request) throws SQLException, IOException {
-
-        CuentasDto resultSet = this.dao.conusltaNumTarjeta(request.getCuenta());
-        CuentasResponse response = new CuentasResponse();
-        if (resultSet.getNombre_cuenta() == null) {
-            this.dao.crearCuenta(convertirRequest(request));
-            response.setMensaje("Cuenta Creada.");
-            response.setDetalles("Se requiere activacion de cuenta.");
-            response.setFolio(this.folios.folioResponse());
-            response.setCode(201);
-        } else {
-            response.setMensaje("Cuenta Existente.");
-            response.setDetalles("Valide sus datos.");
-            response.setFolio(this.folios.folioResponse());
-            response.setCode(200);
-        }
-
-        return response;
-    }
-    @Override
-    /*metodo publico con parametros que espera*/
-    public CuentasResponse activaCuenta(Long num_cuenta) throws SQLException, IOException {
-        /*Creacion de objeto CuentasDto y accesa al metodo dao y espera el parametro num_cuenta*/
-        CuentasDto cuenta = dao.conusltaNumTarjeta(num_cuenta);
-        /*Creacion de objeto para la respuesa*/
-        CuentasResponse response = new CuentasResponse();
-        /*Validacion si el estado que regresa la consulta es diferente a null entra a la segunda validadcion*/
-        if(cuenta.getEstatus() != null){
-            /*si el estado de la consulta es diferente a 1 entonces ingresa al metodo activar cuenta con el parametro num cuenta*/
-            if(cuenta.getEstatus() !=1){
-                dao.activarCuenta(num_cuenta);
-                /*Envia los mensajes y con response envia mensaje yu detalles, asi como el folio de la transaccion que esta mencionando*/
-                response.setMensaje("Cuenta Se activo.");
-                response.setDetalles("Ya puede realizar sus transacciones.");
-                response.setFolio(this.folios.folioResponse());
-                /*Responde con el code 200*/
-                response.setCode(200);
-            }else {
-                /*si el estado de la consulta es igual a 1 entonces nmotifica que la cuenta ya se encuentra activa y puede realizar transacciones de igual manera responde con un code 200*/
-                response.setMensaje("La Cuenta Ya Se Encuentra Activa.");
-                response.setDetalles("Ya puede realizar sus transacciones.");
-                response.setFolio(this.folios.folioResponse());
-                response.setCode(200);
-            }
-        }else{
-            /*Validacion si el estado que regresa la consulta es igual a null entonces la consuilta regreso datos no satisfactorios y envia codigo 204 de cuenta no localizada*/
-            /*Validacion si el estado que regresa la consulta es igual a null entonces la consuilta regreso datos no satisfactorios y envia codigo 204 de cuenta no localizada*/
-            throw new GenericaException("Cuenta No Encontrada.",
-                    "Valida tus datos.", folios.folioResponse(), 204);
-        }
-
-        return response;
-    }
-
-
-
-    private CuentasDto convertirRequest(RegistroCuentasRequest request) {       //convierte el resquest a cuenta dto
-        CuentasDto cuentasDto = new CuentasDto();
-        cuentasDto.setNombre_cuenta(request.getNombre());
-        cuentasDto.setNumero_cuenta(request.getCuenta());
-        cuentasDto.setEstatus(request.getStatus());
-        return cuentasDto;
-    }
 }

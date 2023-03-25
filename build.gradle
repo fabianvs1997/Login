@@ -1,18 +1,12 @@
-plugins { // Declaración de los complementos que se van a utilizar en el proyecto
-	id 'java'// Complemento para aplicaciones Java
-	id 'org.springframework.boot' version '3.0.2' // Complemento para aplicaciones de Spring Boot, con la versión 3.0.2
-	id 'io.spring.dependency-management' version '1.1.0' // Complemento para la gestión de dependencias de Spring Boot
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.bankiko.atm.login'// Identificación del grupo de la aplicación
-version = '0.0.1-SNAPSHOT'// Versión de la aplicación
-sourceCompatibility = '17'// Versión de Java utilizada para compilar el código fuente
-
-configurations {// Declaración de las configuraciones que se van a utilizar en el proyecto
-	compileOnly {// Configuración para las dependencias que sólo se utilizan en tiempo de compilación
-		extendsFrom annotationProcessor// Se extiende a partir de la configuración "annotationProcessor"
-	}
-}
+group = 'com.bankiko.atm.login'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 repositories {// Configuración de los repositorios que se van a utilizar para obtener las dependencias
 	mavenCentral()// Repositorio central de Maven
@@ -21,7 +15,6 @@ repositories {// Configuración de los repositorios que se van a utilizar para o
 dependencies {// Declaración de las dependencias que se van a utilizar en el proyecto
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'// Dependencia para el acceso a datos con Spring Data JPA
 	implementation 'org.springframework.boot:spring-boot-starter-web'// Dependencia para la creación de aplicaciones web con Spring Boot
-	implementation('com.oracle.database.jdbc:ojdbc11:21.3.0.0')// Dependencia para el controlador JDBC de Oracle, versión 11
 	compileOnly 'org.projectlombok:lombok'// Dependencia para el uso de anotaciones de Lombok sólo en tiempo de compilación
 
 	// https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8

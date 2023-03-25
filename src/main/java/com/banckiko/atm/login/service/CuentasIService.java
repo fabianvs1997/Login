@@ -11,8 +11,6 @@ public interface CuentasIService {
 
     CuentasResponse consultaTarjeta(Long num_tarjeta, CuentasRequest request) throws SQLException, IOException;        // espera dos parametros, Resquest (modelo de datos)
 
-    CuentasResponse crearCuenta(RegistroCuentasRequest request) throws SQLException, IOException;
-    CuentasResponse activaCuenta(Long num_cuenta) throws SQLException, IOException;
 }
 
 
