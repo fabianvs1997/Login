@@ -10,10 +10,7 @@ public interface CuentasIDao {
     CuentasDto conusltaNumTarjeta(Long num_tarjeta) throws SQLException, IOException;
 
 
-    Object crearCuenta(CuentasDto cuentasDto) throws SQLException, IOException;
 
-
-    void activarCuenta(Long num_cuenta);
 
 
 }

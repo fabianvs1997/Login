@@ -2,7 +2,7 @@ package com.banckiko.atm.login.exception;
 
 
 import com.banckiko.atm.login.model.CuentasResponse;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +17,7 @@ public class ControllerAdviceGen {
         response.setMensaje(e.getMensaje());
         response.setDetalles(e.getDetalles());
         response.setFolio(e.getFolio());
-        return  new ResponseEntity<>(response.map(), HttpStatusCode.valueOf(e.getCode()));
+        return  new ResponseEntity<>(response.map(), HttpStatus.valueOf(e.getCode()));
 
     }
 
