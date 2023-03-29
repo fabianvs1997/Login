@@ -1,9 +1,10 @@
 package com.banckiko.atm.login.controller;
 
 
+import com.banckiko.atm.login.config.JwtTokenProvider;
 import com.banckiko.atm.login.model.CuentasResponse;
+import com.banckiko.atm.login.model.UserCredentials;
 import com.banckiko.atm.login.model.registro.CuentasRequest;
-import com.banckiko.atm.login.model.registro.RegistroCuentasRequest;
 import com.banckiko.atm.login.service.CuentasIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,17 +51,49 @@ public class CuentasController {
     @Autowired //Crea una instancia de inyeccion de dependencias
     private CuentasIService service;
 
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider; // Una instancia de JwtTokenProvider, que se utilizará para generar y validar tokens JWT
+
+
+    // Maneja las solicitudes HTTP POST a la ruta "/auth/login"
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserCredentials credentials) {
+        // Genera un token JWT utilizando la instancia de JwtTokenProvider
+        String token = jwtTokenProvider.generateToken(credentials.getUsername());
+        // Devuelve el token JWT en una respuesta HTTP 200 OK utilizando ResponseEntity.ok().body(token)
+        return ResponseEntity.ok().body(token);
+    }
+
+
+
+
     /**
      * Consulta el estado de una cuenta y devuelve una respuesta con información de la cuenta y un código de estado HTTP.
      */
     @PostMapping("/logeo")              // asigana la ruta del login
-    public ResponseEntity<?> consultaTarjeta(@RequestBody CuentasRequest request, @RequestParam("cuenta") String num_tarjeta) throws SQLException, IOException {        //metodo que envia dos parametros, uno como body y otro como parametro
+    public ResponseEntity<?> consultaTarjeta(@RequestBody CuentasRequest request,
+                                             @RequestParam("cuenta") String num_tarjeta,
+                                             @RequestHeader("Authorization") String tokenHeader)
+            throws SQLException, IOException {        //metodo que envia dos parametros, uno como body y otro como parametro
+// Extrae el token JWT del encabezado de solicitud "Authorization"
+        String token = tokenHeader.substring(7);
+
+        if (jwtTokenProvider.validateToken(token)) {
+        Long numT = Long.valueOf(num_tarjeta);    //convierte la cadena de caracteres tipo texto a long.
+        CuentasResponse response = this.service.consultaTarjeta(numT, request);  // respuesta del request
+        return new ResponseEntity<>(response.map(), HttpStatus.valueOf(response.getCode())); //mapeo de la respuesta y el codigo del estatus
+        } else {
+            return new ResponseEntity<>("error", HttpStatus.valueOf(400));
+        }
+    }
+
+
+    @PostMapping("/nip")
+    public ResponseEntity<?> nip(@RequestBody CuentasRequest request, @RequestParam("cuenta") String num_tarjeta) throws SQLException, IOException {        //metodo que envia dos parametros, uno como body y otro como parametro
         Long numT = Long.valueOf(num_tarjeta);    //convierte la cadena de caracteres tipo texto a long.
         CuentasResponse response = this.service.consultaTarjeta(numT, request);  // respuesta del request
         return new ResponseEntity<>(response.map(), HttpStatus.valueOf(response.getCode())); //mapeo de la respuesta y el codigo del estatus
     }
-
-
 }
 
 
