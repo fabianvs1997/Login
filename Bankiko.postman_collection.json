@@ -1,0 +1,652 @@
+{
+	"info": {
+		"_postman_id": "1c22eb1c-9e47-4be1-9251-f3e408f12b7c",
+		"name": "Bankiko",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4457305"
+	},
+	"item": [
+		{
+			"name": "LOCAL",
+			"item": [
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "InsertarTarjeta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8085/api/v1/login/logeo?cuenta=412233134342345",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"logeo"
+									],
+									"query": [
+										{
+											"key": "cuenta",
+											"value": "412233134342345"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Login202",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8081/api/v1/login?cuenta=412233134342345",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											],
+											"query": [
+												{
+													"key": "cuenta",
+													"value": "412233134342345"
+												}
+											]
+										}
+									},
+									"status": "Accepted",
+									"code": 202,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"mensaje\":\"Aceptada.\",\r\n    \"detalles\": \"Bienvenido Fabian, ingresa tu nip.\",\r\n    \"folio\":\"IUSDHGFI7634R87\"\r\n}"
+								},
+								{
+									"name": "Login204",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8081/api/v1/login?cuenta=412233134342345",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											],
+											"query": [
+												{
+													"key": "cuenta",
+													"value": "412233134342345"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"mensaje\": \"Cuenta No Encontrada.\",\n    \"detalles\": \"Valida tus datos.\",\n    \"folio\": \"IUSDHGFI7634R87\"\n}"
+								},
+								{
+									"name": "LoginCuentaIvalida204",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8081/api/v1/login?cuenta=412233134342345",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											],
+											"query": [
+												{
+													"key": "cuenta",
+													"value": "412233134342345"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"mensaje\": \"Cuenta Invalida.\",\n    \"detalles\": \"Valida tus datos.\",\n    \"folio\": \"IUSDHGFI7634R87\"\n}"
+								},
+								{
+									"name": "Login404",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8081/api/v1/login?cuenta=412233134342345",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											],
+											"query": [
+												{
+													"key": "cuenta",
+													"value": "412233134342345"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Login400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8081/api/v1/login?cuenta=412233134342345",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											],
+											"query": [
+												{
+													"key": "cuenta",
+													"value": "412233134342345"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"mensaje\": \"Request invalido.\",\n    \"detalles\": \"Valida tus datos, (variable dinamica de la causa del error).\",\n    \"folio\": \"IUSDHGFI7634R87\"\n}"
+								},
+								{
+									"name": "Login500",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8081/api/v1/login?cuenta=412233134342345",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"login"
+											],
+											"query": [
+												{
+													"key": "cuenta",
+													"value": "412233134342345"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"mensaje\": \"Servicio Caido\",\r\n    \"detalles\": \"Regresa más tarde!\",\r\n    \"folio\": \"IUSDHGFI7634R87\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "EnvioNip",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmYWJpZmdhbiIsImlhdCI6MTY3ODc3NDQ4MSwiZXhwIjoxNjc4ODYwODgxfQ.WeSPBRTAbbKE1M3LMSywu5XW_unxWA7aItPmGZGmtikHQ1Pqurk6QC8B3s2O6cnG-Op4lpm8KnAihf_Sqw2roA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"folio\": \"SDSADA3423GFDG\",\r\n    \"idCajero\": \"34234254178\",\r\n    \"fecha\": \"25/03/2023 20:49:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8085/api/v1/login/nip?nip=1234",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"nip"
+									],
+									"query": [
+										{
+											"key": "nip",
+											"value": "1234"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Alta Tarjetas",
+					"item": [
+						{
+							"name": "CrearCuenta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Monica Villaseñor Sanchez\",\r\n    \"cuenta\":\"123456734534342\",\r\n    \"status\":0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8086/api/v1/altaTarjetas/crearCuenta",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"v1",
+										"altaTarjetas",
+										"crearCuenta"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CrearCuenta201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Fabian Villaseñor Sanchez\",\r\n    \"cuenta\":\"1234567890\",\r\n    \"status\":0\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8081/api/v1/crearCuenta",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"crearCuenta"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"mensaje\": \"Cuenta Creada.\",\n    \"detalles\": \"Se requiere activacion de cuenta.\",\n    \"folio\": \"IUSDHGFI7634R87\"\n}"
+								}
+							]
+						},
+						{
+							"name": "ActivarCuenta",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8086/api/v1/altaTarjetas/activarCuenta?cuenta=123456734534342",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"v1",
+										"altaTarjetas",
+										"activarCuenta"
+									],
+									"query": [
+										{
+											"key": "cuenta",
+											"value": "123456734534342"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Operaciones",
+					"item": [
+						{
+							"name": "ConsultaDatosCliente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8085/api/v1/operaciones/consultaDatosCliente?token=kjsdnfiuewfq34",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"v1",
+										"operaciones",
+										"consultaDatosCliente"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "kjsdnfiuewfq34"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ConsultaMovientos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"movimientos\": [\r\n       {\r\n\r\n       },\r\n       {\r\n\r\n       }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8085/api/v1/operaciones/movientos",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"v1",
+										"operaciones",
+										"movientos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RetiroEfectivo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "sdfsfgretreye",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8085/api/v1/operaciones/retiroEfectivo?idCliente=sergwergwergyukyrtk",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"v1",
+										"operaciones",
+										"retiroEfectivo"
+									],
+									"query": [
+										{
+											"key": "idCliente",
+											"value": "sergwergwergyukyrtk"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TraspasoCuentaACuenta",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "TransferenciaACuentaInterBancaria",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "OAUT2",
+					"item": [
+						{
+							"name": "token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"fabian\",\r\n    \"password\":\"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8085/api/v1/login/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "DEV",
+			"item": []
+		}
+	]
+}
